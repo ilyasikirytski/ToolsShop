@@ -16,7 +16,7 @@ public class GrinderCategoryActivity extends AppCompatActivity {
 
     private ListView listViewGrinder;
 
-    private ArrayList<Drill> grinder;
+    private ArrayList<Grinder> grinders;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,21 +26,21 @@ public class GrinderCategoryActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.hide();
         }
-        grinder = new ArrayList<>();
-        grinder.add(new Drill(getString(R.string.grinder_interskool_title), getString(R.string.grinder_interskool_info), R.drawable.interskolgrind));
-        grinder.add(new Drill(getString(R.string.grinder_makita_title), getString(R.string.grinder_makita_info), R.drawable.makitagrinder));
-        grinder.add(new Drill(getString(R.string.grinder_dewalt_title), getString(R.string.grinder_dewalt_info), R.drawable.dewaltgrinder));
+        grinders = new ArrayList<>();
+        grinders.add(new Grinder(getString(R.string.grinder_interskool_title), getString(R.string.grinder_interskool_info), R.drawable.interskolgrind));
+        grinders.add(new Grinder(getString(R.string.grinder_makita_title), getString(R.string.grinder_makita_info), R.drawable.makitagrinder));
+        grinders.add(new Grinder(getString(R.string.grinder_dewalt_title), getString(R.string.grinder_dewalt_info), R.drawable.dewaltgrinder));
         listViewGrinder = findViewById(R.id.listViewGrinder);
-        ArrayAdapter<Drill> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, grinder);
+        ArrayAdapter<Grinder> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, grinders);
         listViewGrinder.setAdapter(adapter);
         listViewGrinder.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long ld) {
-                Drill drill = grinder.get(position);
-                Intent intent = new Intent(getApplicationContext(), DrillDetailActivity.class);
-                intent.putExtra("title", drill.getTitle());
-                intent.putExtra("info", drill.getInfo());
-                intent.putExtra("resId", drill.getImageResourceId());
+                Grinder grinder = grinders.get(position);
+                Intent intent = new Intent(getApplicationContext(), GrinderDetailActivity.class);
+                intent.putExtra("title", grinder.getTitle());
+                intent.putExtra("info", grinder.getInfo());
+                intent.putExtra("resId", grinder.getImageResourceId());
                 startActivity(intent);
             }
         });
